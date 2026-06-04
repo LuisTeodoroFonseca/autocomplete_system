@@ -13,6 +13,10 @@ int main() {
     cout << texto1 << endl;
     cout << texto2 << endl;
     cout << texto3 << endl;
-
+    for(int i = 0; i < numberOfGames; i++) {
+        trie.insert(&games[i]);
+    }
+    cout << trie.contains("Counter Strike Global Offensive") << endl;
+    cout << trie.contains("Valorant") << endl;
     return 0;
 }

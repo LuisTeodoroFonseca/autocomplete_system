@@ -8,7 +8,7 @@
 class TrieNode {
 
 public:
-    TrieNode* children[26];
+    TrieNode* children[36];
     bool isEndOfTitle;
     Game* game;
 
@@ -33,8 +33,8 @@ public:
 
     std::string toSearchKey(std::string text);
     void sortResults(std::vector<Game*>& games);
-
-    // Outros métodos auxiliares, se necessário
+    int partition(std::vector<Game*>& games, int low, int high);
+    void quicksort(std::vector<Game*>& games, int low, int high);
 };
 
 #endif

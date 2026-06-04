@@ -4,7 +4,6 @@ using namespace std;
 #include "Game.hpp"
 
 Game::Game() {
-
 }
 
 Game::Game(std::string title, std::string shortDescription, int popularity) {

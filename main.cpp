@@ -7,38 +7,39 @@ using namespace std;
 #include "GamesDatabase.hpp"
 
 int main(int argc, char* argv[]) {
-    // 1. Verificar argumentos
+    // Verifica argumentos
     if (argc != 3) {
         cout << "Usage: ./app k prefix" << endl;
         return 1;
     }
 
-    // 2. Converter k para inteiro
+    // Converte k para inteiro
     int k = 0;
     try {
         k = std::stoi(argv[1]);
-    } catch (...) {
+    } 
+    catch (...) {
         cout << "Usage: ./app k prefix" << endl;
         return 1;
     }
 
     std::string prefix = argv[2];
 
-    // 3. Criar a Trie
+    // Cria a Trie
     Trie trie;
 
-    // 4. Inserir todos os jogos
+    // Insere todos os jogos
     for (int i = 0; i < numberOfGames; i++) {
         trie.insert(&games[i]);
     }
 
-    // 5. Executar autocomplete
+    // Executa autocomplete
     std::vector<Game*> results = trie.autocomplete(prefix, k);
 
-    // 6. Exibir resultados
-    if (results.empty()) {
+    // Exibe resultados
+    if (results.empty()) 
         cout << "No results found" << endl;
-    } else {
+    else {
         for (Game* g : results) {
             cout << g->getTitle() << " | " << g->getShortDescription() << " | " << g->getPopularity() << endl;
         }

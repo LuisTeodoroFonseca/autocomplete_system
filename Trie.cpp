@@ -46,8 +46,8 @@ int Trie::charToIndex(char c) {
     return -1;
 }
 
-// Converte título/prefixo para chave de busca:
-// - converte para minúsculas
+// Normaliza o título:
+// - converte as letras para minúsculas
 // - remove espaços
 std::string Trie::toSearchKey(std::string text) {
     std::string result;
@@ -83,7 +83,7 @@ bool Trie::insert(Game* game) {
     return true;
 }
 
-// Verifica se existe um jogo com o título informado (case-insensitive, ignora espaços).
+// Verifica se existe um jogo com o título informado.
 bool Trie::contains(std::string title) {
     if (title.empty())
         return false;
@@ -103,7 +103,7 @@ bool Trie::contains(std::string title) {
     return current->isEndOfTitle;
 }
 
-// Coleta recursivamente todos os jogos da subárvore a partir de `node`.
+// Coleta recursivamente todos os jogos da subárvore a partir de node.
 void Trie::collectAll(TrieNode* node, std::vector<Game*>& results) {
     if (node == nullptr)
         return;
@@ -114,7 +114,7 @@ void Trie::collectAll(TrieNode* node, std::vector<Game*>& results) {
 }
 
 // Retorna até k jogos cujo título começa com o prefixo informado,
-// ordenados por popularidade decrescente (empate: ordem alfabética pela chave).
+// ordenados por popularidade decrescente (em caso de empate, o desempate é pela ordem alfabética do título).
 std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
     std::vector<Game*> results;
 
@@ -150,7 +150,7 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k) {
 
 // Compara dois jogos conforme critério do autocomplete:
 // 1. Maior popularidade primeiro
-// 2. Em caso de empate, menor chave de busca primeiro (ordem alfabética)
+// 2. Em caso de empate, é pela ordem alfabética do título
 // Retorna true se `a` deve vir antes de `b`.
 static bool comeAntes(Game* a, Game* b, Trie& trie) {
     if (a->getPopularity() != b->getPopularity())

@@ -8,7 +8,7 @@ Game::Game() {
 
 Game::Game(std::string title, std::string shortDescription, int popularity) {
     this->title = title;
-    this->description = description;
+    this->description = shortDescription;  // FIX: was incorrectly assigning `description` to itself
     this->popularity = popularity;
 }
 

@@ -5,10 +5,12 @@
 #include <string>
 #include "Game.hpp"
 
+const int ALPHABET_SIZE = 36; // 26 letras + 10 dígitos
+
 class TrieNode {
 
 public:
-    TrieNode* children[36];
+    TrieNode* children[ALPHABET_SIZE];
     bool isEndOfTitle;
     Game* game;
 
@@ -20,6 +22,12 @@ class Trie {
 
 private:
     TrieNode* root;
+
+    // Métodos auxiliares privados
+    void collectAll(TrieNode* node, std::vector<Game*>& results);
+    int partition(std::vector<Game*>& games, int low, int high);
+    void quicksort(std::vector<Game*>& games, int low, int high);
+    int charToIndex(char c);
 
 public:
 
@@ -33,8 +41,6 @@ public:
 
     std::string toSearchKey(std::string text);
     void sortResults(std::vector<Game*>& games);
-    int partition(std::vector<Game*>& games, int low, int high);
-    void quicksort(std::vector<Game*>& games, int low, int high);
 };
 
 #endif
